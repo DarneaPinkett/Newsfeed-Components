@@ -85,7 +85,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+  title: "Darnea",
+  date: "March 3, 1991",
+  firstParagraph: "I am Mom",
+  secondParagraph: "My favorite color is red",
+  thirdParagraph: "I am a Web Developer"
+}
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +119,47 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const article = document.querySelector('.articles');
+
+data.forEach((item) => {
+  article.append(create(item));
+});
+
+// createElements
+function create(obj) {
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const paragraphOne = document.createElement('p');
+  const paragraphTwo = document.createElement('p');
+  const paragraphThree = document.createElement('p');
+  const button = document.createElement('span');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(paragraphOne);
+  article.appendChild(paragraphTwo);
+  article.appendChild(paragraphThree);
+  article.appendChild(button);
+
+  title.textContent = obj.title;
+  date.textContent = obj.date;
+  paragraphOne.textContent = obj.firstParagraph;
+  paragraphTwo.textContent = obj.secondParagraph;
+  paragraphThree.textContent = obj.thirdParagraph;
+  button.textContent = 'open'
+
+  article.classList.add('article');
+  date.classList.add('date');
+  button.classList.add('expandButton');
+
+  button.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+  });
+  return article;
+
+}
+
+
+
+

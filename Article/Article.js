@@ -114,23 +114,44 @@ const data = [
 */
 const article = document.querySelector('.articles');
 
+data.forEach((item) => {
+  article.append(create(item));
+});
+
 // createElements
-function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+function create(obj) {
   const article = document.createElement('div');
-  const articleTitle = document.createElement('h2');
-  const dateArticle = document.createElement('p');
-  const paragraph = document.createElement('p');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const paragraphOne = document.createElement('p');
+  const paragraphTwo = document.createElement('p');
+  const paragraphThree = document.createElement('p');
   const button = document.createElement('span');
 
-  article.appendChild(articleTitle);
-  article.appendChild(dateArticle);
-  article.appendChild(paragraph);
-  article.appendChild(paragraph);
-  article.appendChild(paragraph);
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(paragraphOne);
+  article.appendChild(paragraphTwo);
+  article.appendChild(paragraphThree);
   article.appendChild(button);
 
+  title.textContent = obj.title;
+  date.textContent = obj.date;
+  paragraphOne.textContent = obj.firstParagraph;
+  paragraphTwo.textContent = obj.secondParagraph;
+  paragraphThree.textContent = obj.thirdParagraph;
+  button.textContent = 'open'
 
+  article.classList.add('article');
+  date.classList.add('date');
+  button.classList.add('expandButton');
 
-return article;
+  button.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+  });
+  return article;
 }
+
+
+
 
